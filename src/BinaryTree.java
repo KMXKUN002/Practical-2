@@ -8,10 +8,8 @@ public class BinaryTree<dataType>
    
    protected int opCount = 0;
    
-   public int getOpCount(){
-      return opCount;
-   }
-
+   public int getOpCount() { return opCount; }
+   public void resetOpCount() { opCount = 0; }
    
    public BinaryTree ()
    {

@@ -21,13 +21,11 @@ public class LSAVLApp {
          AVLTree<LoadSheddingUnit> LSTree = new AVLTree<LoadSheddingUnit> ();
 
          while ((line = br.readLine()) != null) {
-            opCount++; //instrumentation
             
             n++;
             LSTree.insert (new LoadSheddingUnit(line));
          }
          
-         opCount++; //instrumentation         
          if (args.length == 0) {
             LSTree.inOrder();
          }

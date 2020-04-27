@@ -8,6 +8,7 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
    private int findingOpCount = 0;
    
    public int getFindingOpCount () { return findingOpCount; }
+   public void resetFindingOpCount () { findingOpCount = 0; }
 
    public int height ( BinaryTreeNode<dataType> node )
    {

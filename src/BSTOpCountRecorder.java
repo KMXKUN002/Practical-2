@@ -1,10 +1,10 @@
-// AVLOpCountRecorder
+// BSTOpCountRecorder
 //	1 March 2020
 //	Chris	Kim
 
 import java.io.*;
 
-public class AVLOpCountRecorder {
+public class BSTOpCountRecorder {
    static int opCount = 0; //instrumentation
    
    public static void main (String[] args) {
@@ -23,7 +23,7 @@ public class AVLOpCountRecorder {
          String line;
          String[] sampleUnits = new String[3000];
          
-         AVLTree<LoadSheddingUnit> LSTree = new AVLTree<LoadSheddingUnit> ();
+         BinarySearchTree<LoadSheddingUnit> LSTree = new BinarySearchTree<LoadSheddingUnit> ();
          
          try {
             double samplePercent = Double.parseDouble (args[0]);

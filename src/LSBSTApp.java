@@ -20,14 +20,11 @@ public class LSBSTApp {
          
          BinarySearchTree<LoadSheddingUnit> LSTree = new BinarySearchTree<LoadSheddingUnit> ();
 
-         while ((line = br.readLine()) != null) {
-            opCount++; //instrumentation
-            
+         while ((line = br.readLine()) != null) {            
             n++;
             LSTree.insert (new LoadSheddingUnit(line));
          }
          
-         opCount++; //instrumentation         
          if (args.length == 0) {
             LSTree.inOrder();
          }
@@ -49,7 +46,7 @@ public class LSBSTApp {
             }
          }   
                      
-         opCount += LSTree.getOpCount() + LSTree.getSortingOpCount();
+         opCount += LSTree.getOpCount() + LSTree.getFindingOpCount();
                   
          System.out.println ("Number of samples: " + n);
 
