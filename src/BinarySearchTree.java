@@ -6,11 +6,27 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
 {   
    protected int findingOpCount = 0;
       
+  /**
+   * Returns the attribute of this class findingOpCount, which counts the number of operations used to find a given object in the tree
+   * 
+   * 
+   */
    public int getFindingOpCount () {
       return findingOpCount;
    }
+   
+  /**
+   * Resets the findingOpCount
+   * 
+   * 
+   */
    public void resetFindingOpCount () { findingOpCount = 0; }
    
+  /**
+   * Inserts an instance of an object into the tree
+   * 
+   * @param d  the instance of the dataType object which we are concerned with (eg. LoadSheddingUnit)
+   */
    public void insert ( dataType d )
    {
       opCount++; //instrumentation
@@ -19,6 +35,14 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
       else
          insert (d, root);
    }
+   
+  /**
+   * Inserts an instance of an object into the tree.
+   * The process of this automatically sorts the objects so that an object with an equal or lesser key goes to the left, and a greater key goes to the right.
+   * 
+   * @param d the instance of the dataType object which we are concerned with (eg. LoadSheddingUnit)
+   * @param node  the node to which the object d is attached
+   */
    public void insert ( dataType d, BinaryTreeNode<dataType> node )
    {
       opCount++; //instrumentation
@@ -40,6 +64,11 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
       }
    }
    
+  /**
+   * Searches for and returns a given object in the tree
+   * 
+   * @param d  the instance of the dataType object which we are concerned with (eg. LoadSheddingUnit)
+   */
    public BinaryTreeNode<dataType> find ( dataType d )
    {
       findingOpCount++; //instrumentation
@@ -48,6 +77,16 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
       else
          return find (d, root);
    }
+   
+  /**
+   * Searches for and returns a given object in the tree, going recursively down the tree.
+   * If the given object's key is equal to the current node's, the method returns that node's object.
+   * If the given object's key is less than the current node, the method searches in the tree beginning from the left node.
+   * Else, the method searches in the tree beginning from the right node.
+   * 
+   * @param d  the instance of the dataType object which we are concerned with (eg. LoadSheddingUnit)
+   * @param node  the node to which the object d is attached
+   */
    public BinaryTreeNode<dataType> find ( dataType d, BinaryTreeNode<dataType> node )
    {
       findingOpCount++; //instrumentation
@@ -59,55 +98,6 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
       }
       else
          return (node.right == null) ? null : find (d, node.right);
-   }
-   
-   public void delete ( dataType d )
-   {
-      root = delete (d, root);
-   }   
-   public BinaryTreeNode<dataType> delete ( dataType d, BinaryTreeNode<dataType> node )
-   {
-      if (node == null) return null;
-      
-      if (d.compareTo (node.data) < 0) {
-         node.left = delete (d, node.left);
-      }
-      else if (d.compareTo (node.data) > 0) {
-         node.right = delete (d, node.right);
-      }
-      else if (node.left != null && node.right != null )
-      {
-         node.data = findMin (node.right).data;
-         node.right = removeMin (node.right);
-      }
-      else {
-         if (node.left != null)
-            node = node.left;
-         else
-            node = node.right;
-      }
-      return node;
-   }
-   
-   public BinaryTreeNode<dataType> findMin ( BinaryTreeNode<dataType> node )
-   {
-      if (node != null)
-         while (node.left != null)
-            node = node.left;
-      return node;
-   }
-
-   public BinaryTreeNode<dataType> removeMin ( BinaryTreeNode<dataType> node )
-   {
-      if (node == null)
-         return null;
-      else if (node.left != null)
-      {
-         node.left = removeMin (node.left);
-         return node;
-      }
-      else
-         return node.right;
    }
    
 }
