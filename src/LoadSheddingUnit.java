@@ -3,47 +3,42 @@
 //	Chris	Kim
 
 public class LoadSheddingUnit implements Comparable<LoadSheddingUnit> {
-   protected int day;
-   protected String parameters;
+   protected int key;
    protected String areas;
    
    public LoadSheddingUnit () {
    }
    
    public LoadSheddingUnit(String raw) {
-      parameters = raw.substring (0, raw.indexOf(' '));
+      String[] parameters = raw.split("_");
       
-      day = Integer.parseInt (raw.substring (2, raw.indexOf('_', 2)));
-      areas = raw.substring (raw.indexOf(' ') + 1);
+      areas = parameters[2].substring(2);
+      key = Integer.parseInt (parameters[0]) * 10000;
+      key += Integer.parseInt (parameters[1]) * 100;
+      key += Integer.parseInt (parameters[2].substring(0, 2));
+      
    }
    
-   public boolean matches (String p) {
-      if (p.equals (parameters)) {
+   public boolean matches (int k) {
+      if (key == k)
          return true;
-      }
       
       return false;
    }
    
    @Override
    public int compareTo (LoadSheddingUnit unit) {
-      if (parameters.equals(unit.getParameters())) {
+      if (key == unit.getKey())
          return 0;
-      }
       
-      if (day >= unit.getDay()) {
+      if (key > unit.getKey())
          return 1;
-      }
       
       return -1;
    }
    
-   public int getDay () {
-      return day;
-   }
-      
-   public String getParameters () {
-      return parameters;
+   public int getKey () {
+      return key;
    }
    
    public String getAreas () {
@@ -51,7 +46,10 @@ public class LoadSheddingUnit implements Comparable<LoadSheddingUnit> {
    }
    
    public String toString () {
-      String[] reader = parameters.split ("_");
-      return "Stage " + reader[0] + " - Day " + String.format ("%2d", day) + " - Start Hour " + reader[2] + " - Areas " + areas;
+      int[] parameters = new int[3];
+      parameters[0] = key/10000;
+      parameters[1] = (key / 100) % 100;
+      parameters[2] = key % 100;
+      return "Stage " + parameters[0] + ", Day " + parameters[1] + ", Hour " + parameters[2] + ", Areas " + areas;
    }
 }

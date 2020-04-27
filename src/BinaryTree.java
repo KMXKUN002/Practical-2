@@ -4,16 +4,11 @@
 
 public class BinaryTree<dataType>
 {
-   protected int opCount = 0;
    BinaryTreeNode<dataType> root;
    
    public BinaryTree ()
    {
       root = null;
-   }
-
-   public int getOpCount () {
-      return opCount;
    }
    
    public int getHeight ()
@@ -79,7 +74,6 @@ public class BinaryTree<dataType>
    }
    public void inOrder ( BinaryTreeNode<dataType> node )
    {
-      opCount++; //instrumentation
       if (node != null)
       {
          inOrder (node.getLeft ());

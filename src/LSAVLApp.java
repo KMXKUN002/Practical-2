@@ -1,10 +1,10 @@
-//	LSArrayApp
-//	1 March 2020
+//	LSAVLApp
+//	16 March 2020
 //	Chris	Kim
 
 import java.io.*;
 
-public class LSBSTApp {
+public class LSAVLApp {
    static int opCount = 0; //instrumentation
    
    public static void main (String[] args) {
@@ -18,7 +18,7 @@ public class LSBSTApp {
          StringBuffer sb = new StringBuffer();
          String line;
          
-         BinarySearchTree<LoadSheddingUnit> LSTree = new BinarySearchTree<LoadSheddingUnit> ();
+         BinarySearchTree<LoadSheddingUnit> LSTree = new AVLTree<LoadSheddingUnit> ();
 
          while ((line = br.readLine()) != null) {
             opCount++; //instrumentation

@@ -71,25 +71,20 @@ public class BinarySearchTree<dataType extends Comparable<? super dataType>> ext
    }   
    public BinaryTreeNode<dataType> delete ( dataType d, BinaryTreeNode<dataType> node )
    {
-      opCount++; //instrumentation
       if (node == null) return null;
       
-      opCount++; //instrumentation
       if (d.compareTo (node.data) < 0) {
          node.left = delete (d, node.left);
       }
       else if (d.compareTo (node.data) > 0) {
-         opCount++; //instrumentation
          node.right = delete (d, node.right);
       }
       else if (node.left != null && node.right != null )
       {
-         opCount++; //instrumentation
          node.data = findMin (node.right).data;
          node.right = removeMin (node.right);
       }
       else {
-         opCount++; //instrumentation
          if (node.left != null)
             node = node.left;
          else
