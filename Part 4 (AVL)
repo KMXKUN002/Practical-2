@@ -1,0 +1,48 @@
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp
+Stage 1, Day 1, Hour 0, Areas  1
+Stage 1, Day 1, Hour 2, Areas  2
+Stage 1, Day 1, Hour 4, Areas  3
+Stage 1, Day 1, Hour 6, Areas  4
+. . .
+Stage 8, Day 31, Hour 20, Areas  14, 6, 10, 2, 11, 3, 7, 15
+Stage 8, Day 31, Hour 22, Areas  15, 7, 11, 3, 12, 4, 8, 16
+Number of samples: 2976
+Comparisons to find: 0
+Total comparisons: 383569
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 1 14 00
+Areas  16
+Number of samples: 2976
+Comparisons to find: 12
+Total comparisons: 377616
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 5 13 20
+Areas  14, 6, 10, 2, 11
+Number of samples: 2976
+Comparisons to find: 20
+Total comparisons: 377616
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 8 6 12
+Areas  8, 16, 4, 12, 9, 1, 5, 13
+Number of samples: 2976
+Comparisons to find: 16
+Total comparisons: 377616
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 0 1
+Parameters wrongly given.
+Number of samples: 2976
+Comparisons to find: 0
+Total comparisons: 377616
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 1 13 01
+Areas not found
+Number of samples: 2976
+Comparisons to find: 20
+Total comparisons: 377616
+***
+chris@chris-VirtualBox:~/CSC2001F/Assignment 2/src$ java LSAVLApp 10 13 24
+Areas not found
+Number of samples: 2976
+Comparisons to find: 13
+Total comparisons: 377616
+
