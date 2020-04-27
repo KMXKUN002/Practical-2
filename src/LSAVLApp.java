@@ -18,7 +18,7 @@ public class LSAVLApp {
          StringBuffer sb = new StringBuffer();
          String line;
          
-         BinarySearchTree<LoadSheddingUnit> LSTree = new AVLTree<LoadSheddingUnit> ();
+         AVLTree<LoadSheddingUnit> LSTree = new AVLTree<LoadSheddingUnit> ();
 
          while ((line = br.readLine()) != null) {
             opCount++; //instrumentation
@@ -37,7 +37,7 @@ public class LSAVLApp {
             
                LoadSheddingUnit comparableUnit = new LoadSheddingUnit (raw);               
                try {
-                  LoadSheddingUnit foundUnit = LSTree.find (comparableUnit);
+                  LoadSheddingUnit foundUnit = LSTree.find (comparableUnit).getData();
                   System.out.println ("Areas " + foundUnit.getAreas());
                }
                catch (NullPointerException g) {
@@ -45,19 +45,16 @@ public class LSAVLApp {
                }
             }
             catch (ArrayIndexOutOfBoundsException f) {
-               System.out.println ("Not enough parameters.");
+               System.out.println ("Parameters wrongly given.");
             }
          }   
                      
          opCount += LSTree.getOpCount();
                   
          System.out.println ("Number of samples: " + n);
-
-         System.out.println ("Comparisons to find: " + LSTree.getFindingOpCount());
-         System.out.println ("Comparisons to sort: " + LSTree.getSortingOpCount());
-         System.out.println ("Other comparisons: " + opCount);
          
-         opCount += LSTree.getFindingOpCount() + LSTree.getSortingOpCount();
+         System.out.println ("Comparisons to find: " + LSTree.getFindingOpCount());
+         
          System.out.println ("Total comparisons: " + opCount + "\n");
       }
       catch (IOException e) {

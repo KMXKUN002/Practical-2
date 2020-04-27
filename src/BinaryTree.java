@@ -6,6 +6,13 @@ public class BinaryTree<dataType>
 {
    BinaryTreeNode<dataType> root;
    
+   protected int opCount = 0;
+   
+   public int getOpCount(){
+      return opCount;
+   }
+
+   
    public BinaryTree ()
    {
       root = null;
@@ -17,6 +24,7 @@ public class BinaryTree<dataType>
    }   
    public int getHeight ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node == null)
          return -1;
       else
@@ -29,6 +37,7 @@ public class BinaryTree<dataType>
    }   
    public int getSize ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node == null)
          return 0;
       else
@@ -46,6 +55,7 @@ public class BinaryTree<dataType>
    }
    public void preOrder ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node != null)
       {
          visit (node);
@@ -60,6 +70,7 @@ public class BinaryTree<dataType>
    }
    public void postOrder ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node != null)
       {
          postOrder (node.getLeft ());
@@ -74,6 +85,7 @@ public class BinaryTree<dataType>
    }
    public void inOrder ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node != null)
       {
          inOrder (node.getLeft ());
@@ -84,6 +96,7 @@ public class BinaryTree<dataType>
 
    public void levelOrder ()
    {
+      opCount++; //instrumentation
       if (root == null)
          return;
       BTQueue<dataType> q = new BTQueue<dataType> ();
@@ -92,8 +105,12 @@ public class BinaryTree<dataType>
       while ((node = q.getNext ()) != null)
       {
          visit (node);
+         
+         opCount++; //instrumentation
          if (node.getLeft () != null)
             q.enQueue (node.getLeft ());
+         
+         opCount++; //instrumentation
          if (node.getRight () != null)
             q.enQueue (node.getRight ());
       }

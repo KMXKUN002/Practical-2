@@ -5,8 +5,13 @@
 
 public class AVLTree<dataType extends Comparable<? super dataType>> extends BinaryTree<dataType>
 {
+   private int findingOpCount = 0;
+   
+   public int getFindingOpCount () { return findingOpCount; }
+
    public int height ( BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node != null)
          return node.height;
       return -1;
@@ -20,6 +25,7 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
    public void fixHeight ( BinaryTreeNode<dataType> node )
    {
       node.height = Math.max (height (node.left), height (node.right)) + 1;
+      opCount++; //instrumentation
    }
    
    public BinaryTreeNode<dataType> rotateRight ( BinaryTreeNode<dataType> p )
@@ -45,14 +51,20 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
    public BinaryTreeNode<dataType> balance ( BinaryTreeNode<dataType> p )
    {
       fixHeight (p);
+      
+      opCount++; //instrumentation
       if (balanceFactor (p) == 2)
       {
+         opCount++; //instrumentation
          if (balanceFactor (p.right) < 0)
             p.right = rotateRight (p.right);
          return rotateLeft (p);
       }
+      
+      opCount++; //instrumentation
       if (balanceFactor (p) == -2)
       {
+         opCount++; //instrumentation
          if (balanceFactor (p.left) > 0)
             p.left = rotateLeft (p.left);
          return rotateRight (p);
@@ -66,8 +78,11 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
    }
    public BinaryTreeNode<dataType> insert ( dataType d, BinaryTreeNode<dataType> node )
    {
+      opCount++; //instrumentation
       if (node == null)
          return new BinaryTreeNode<dataType> (d, null, null);
+      
+      opCount++; //instrumentation
       if (d.compareTo (node.data) <= 0)
          node.left = insert (d, node.left);
       else
@@ -118,6 +133,7 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
 
    public BinaryTreeNode<dataType> find ( dataType d )
    {
+      findingOpCount++; //instrumentation
       if (root == null)
          return null;
       else
@@ -125,10 +141,13 @@ public class AVLTree<dataType extends Comparable<? super dataType>> extends Bina
    }
    public BinaryTreeNode<dataType> find ( dataType d, BinaryTreeNode<dataType> node )
    {
+      findingOpCount++; //instrumentation
       if (d.compareTo (node.data) == 0) 
          return node;
-      else if (d.compareTo (node.data) < 0)
+      else if (d.compareTo (node.data) < 0) {
+         findingOpCount++; //instrumentation
          return (node.left == null) ? null : find (d, node.left);
+      }
       else
          return (node.right == null) ? null : find (d, node.right);
    }

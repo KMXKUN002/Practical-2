@@ -37,7 +37,7 @@ public class LSBSTApp {
             
                LoadSheddingUnit comparableUnit = new LoadSheddingUnit (raw);               
                try {
-                  LoadSheddingUnit foundUnit = LSTree.find (comparableUnit);
+                  LoadSheddingUnit foundUnit = LSTree.find (comparableUnit).getData();
                   System.out.println ("Areas " + foundUnit.getAreas());
                }
                catch (NullPointerException g) {
@@ -49,15 +49,12 @@ public class LSBSTApp {
             }
          }   
                      
-         opCount += LSTree.getOpCount();
+         opCount += LSTree.getOpCount() + LSTree.getSortingOpCount();
                   
          System.out.println ("Number of samples: " + n);
 
          System.out.println ("Comparisons to find: " + LSTree.getFindingOpCount());
-         System.out.println ("Comparisons to sort: " + LSTree.getSortingOpCount());
-         System.out.println ("Other comparisons: " + opCount);
-         
-         opCount += LSTree.getFindingOpCount() + LSTree.getSortingOpCount();
+
          System.out.println ("Total comparisons: " + opCount + "\n");
       }
       catch (IOException e) {
